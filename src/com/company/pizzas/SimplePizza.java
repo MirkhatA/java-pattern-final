@@ -1,6 +1,6 @@
 package com.company.pizzas;
 
-public class SimplePizza implements Pizza{
+public class SimplePizza implements PizzaAction{
     private String name = "Simple pizza";
     private int size = 20;
     private double price = 2000;
@@ -19,4 +19,6 @@ public class SimplePizza implements Pizza{
     public double getPrice() {
         return this.price;
     }
+
+
 }

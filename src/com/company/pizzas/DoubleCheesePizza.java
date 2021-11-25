@@ -1,11 +1,11 @@
 package com.company.pizzas;
 
-public class DoubleCheesePizza implements Pizza{
-    private Pizza pizza;
+public class DoubleCheesePizza implements PizzaAction{
+    private PizzaAction pizza;
 
     private String name = "Double Cheese Pizza";
 
-    public DoubleCheesePizza(Pizza pizza) {
+    public DoubleCheesePizza(PizzaAction pizza) {
         this.pizza = pizza;
     }
 
