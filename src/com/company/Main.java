@@ -1,15 +1,17 @@
 package com.company;
 
-import com.company.order.Order;
+import com.company.order.*;
+import com.company.order.adapter.CardImplementation;
+import com.company.order.adapter.CardToCashAdapter;
+import com.company.order.card.Card;
+import com.company.order.cash.Cash;
 import com.company.pizzas.DoubleCheesePizza;
 import com.company.pizzas.SimplePizza;
 import com.company.pizzas.VeganPizza;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,13 +46,45 @@ public class Main {
                 double cost = priceList.get(num);
                 order.setPrice(order.getPrice() + cost);
                 System.out.println("Your total price is : " + order.getPrice());
-                System.out.println("Continue?");
+                System.out.println("Continue? Y/N");
                 message = reader.readLine();
             } while (message.equalsIgnoreCase("Y"));
 
+            System.out.println("Your total price - " + order.getPrice());
+
+
+
+            Card card = new CardImplementation();
+
+
+            do {
+                System.out.println("Please choose payment method: \n" +
+                        "1. Card \n" +
+                        "2. Cash \n");
+                int num = Integer.parseInt(reader.readLine());
+
+                if (num == 1) {
+                    System.out.println("Enter card No");
+                    String cardNo = reader.readLine();
+
+                    card.setPrice(order.getPrice());
+
+                    Cash cash = new CardToCashAdapter(card);
+
+                    System.out.println("Payment of " +
+                            + cash.getTotalPrice()
+                            + " successful!");
+                }
+
+                if (num == 2) {
+                    System.out.println("Success");
+                }
+
+                message = reader.readLine();
+            } while (message.equalsIgnoreCase("Y"));
             break;
         }
 
-        System.out.println("Your total price - " + order.getPrice());
+        System.out.println("Thank you! Enjoy your meal!");
     }
 }
